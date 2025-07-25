@@ -15,4 +15,9 @@ describe('CharactersController', () => {
   it('should be defined', () => {
     expect(controller).toBeDefined();
   });
+
+  it('should return "This action returns all characters" when accessing /characters', () => {
+    const result = controller.findAll();
+    expect(result).toBe('This action returns all characters');
+  });
 });
