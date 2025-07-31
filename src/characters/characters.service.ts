@@ -1,20 +1,11 @@
 import { Injectable } from '@nestjs/common';
-import { Character } from './interfaces/character.interface';
+import { PrismaService } from 'src/prisma/prisma.service';
 
 @Injectable()
 export class CharactersService {
-  private readonly characters: Character[] = [];
+  constructor(private prisma: PrismaService) {}
 
-  findAll(): Character[] {
-    return [
-      {
-        id: '1',
-        name: 'John Doe',
-        affiliation: 'Acme Inc',
-        description: 'John Doe is a software engineer',
-        image_url: 'https://via.placeholder.com/150',
-      },
-    ];
-    // return this.characters;
+  findAll() {
+    return this.prisma.character.findMany();
   }
 }
